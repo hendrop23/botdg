@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laut Beku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+      <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        </style>
+</head>
+<body>
+
+    <div id="preloader" class="preloader-container">
+        <div class="preloader-dots">
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
+        </div>
+        <div class="preloader-images">
+            <img src="img/kaget1.png" alt="Image 1" class="preloader-image preloader-image1">
+            <img src="img/kaget2.png" alt="Image 2" class="preloader-image preloader-image2">
+        </div>
+    </div>
+
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+ 
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Services</a></li>
+            <li><a href="index.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    
+
+   <!-- Toggle Button -->
+<button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-ellipsis-v"></i> <!-- Three-dot icon -->
+</button>
+
+<!-- Icon Container -->
+<div class="icon-container">
+    <div class="icon" id="scrollTopButton">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <div class="icon" id="musicButton">
+        <i class="fas fa-music"></i>
+    </div>
+    <div class="icon" id="rainButton">
+        <i class="fas fa-cloud-showers-heavy"></i>
+    </div>
+</div>
+
+
+    <!-- Music Player Modal -->
+    <div id="musicModal" class="modal-music">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="rotation"></div>
+            <div class="player">
+                <div class="head">
+                    <div class="back"></div>
+                    <div class="front">
+                        <div class="avatar">
+                            <img src="http://vignette4.wikia.nocookie.net/lyricwiki/images/1/15/Semisonic_portrait.jpg/revision/latest?cb=20090409134209" />
+                        </div>
+                        <div class="infos">
+                            <div class="titulo_song" id="song-title">Unknown Title</div>
+                            <div class="duracao_song">
+                                <span class="current-time" id="current-time">0:00</span>
+                                <span id="total-duration">/ 0:00</span>
+                            </div>
+                            <div class="tags">
+                                <span>Music</span>
+                                <span>Audio</span>
+                                <span>Player</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="soundline" id="progress-bar"></div>
+                    <div class="controllers">
+                        <div class="back" id="backward"></div>
+                        <div class="play" id="play-pause"></div>
+                        <div class="forward" id="forward"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-service-text slide-in">
+        NO SERVICE
+        RIGHT NOW
+    </div>
+    <div class="item-container">
+        
+        <div class="image-container slide-in" style="display: none;">
+             </div>
+        <div class="input-container">
+            <input style="display: none;" type="text" placeholder="Mau nulis..." id="textInput">
+            <button style="display: none;" onclick="handleLeave()">Leave</button>
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player" src="img/Lord_Alul_New_Hero_-_The_Penghambat_Rezeki_(youconvert.net).mp3"></audio>
+      
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

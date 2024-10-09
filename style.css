@@ -1,0 +1,1018 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url('img/backgroundLaut.jpg') no-repeat;
+    background-size: cover;
+    animation: backgroundScroll 30s linear infinite;
+}
+
+@keyframes backgroundScroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 0; }
+}
+
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Center the image horizontally */
+    position: relative;
+    width: 400px; /* Set the width as needed */
+    height: 300px; /* Set the height as needed */
+    margin: 0 auto; /* Center the container itself */
+}
+
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    margin-top: 120px;
+    border-radius: 8%;
+    border: 2px solid #fff;
+}
+
+.image1 {
+    z-index: -3;
+    opacity: 1;
+    background: #fff;
+}
+
+.image2 {
+    z-index: -2;
+    opacity: 1;
+    top: 20px;
+    left: 20px;
+}
+
+.image3 {
+    z-index: -1;
+    opacity: 1;
+    top: 40px;
+    left: 40px;
+}
+
+.button-container {
+    position: relative; /* Position relative to allow absolute positioning of bubbles */
+}
+
+.input-container {
+    margin-top: 150px;
+    text-align: center;
+    position: relative;
+}
+
+.input-container input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px; /* Adjust width as needed */
+}
+
+.input-container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #1e3a8a, #60a5fa); /* Blue gradient */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    position: relative;
+    overflow: hidden; /* Ensure bubbles don't overflow */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5); /* Light white for bubbles */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Ensure bubbles do not interfere with button clicks */
+}
+
+.bubble1 {
+    width: 40px; /* Smaller bubble size */
+    height: 40px; /* Smaller bubble size */
+    top: -30px; /* Position above the button */
+    left: 20%;
+    animation: bubble1 2s infinite;
+}
+
+.bubble2 {
+    width: 30px; /* Smaller bubble size */
+    height: 30px; /* Smaller bubble size */
+    top: -60px; /* Position above the button */
+    right: 20%;
+    animation: bubble2 2.5s infinite;
+}
+
+@keyframes bubble1 {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes bubble2 {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-80px) scale(0);
+        opacity: 0;
+    }
+}
+
+.input-container button:hover .bubble1,
+.input-container button:hover .bubble2 {
+    opacity: 1; /* Show bubbles on hover */
+}
+
+.input-container button:hover {
+    background: linear-gradient(135deg, #1e40af, #3b82f6); /* Darker blue gradient on hover */
+}
+
+/* Make sure to add this CSS in your styles.css file or within a <style> block */
+
+@font-face {
+    font-family: 'Love Dys';
+    src: local('Love Dys'); /* Assumes font is installed on your computer */
+}
+
+.overlay-text {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Love Days', sans-serif;
+    font-size: 2em; /* Adjust size as needed */
+    color: transparent;
+    background: linear-gradient(135deg, #cce7ff, #0033cc); /* Gradient blue color */
+    -webkit-background-clip: text; /* Apply gradient to text */
+    background-clip: text;
+    padding: 10px;
+    text-align: center;
+    font-size: 36px;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        transform: translateX(var(--translate-x, 0));
+        transform: translateY(var(--translate-y, 0));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        transform: translateY(0);
+    }
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateX(-100%); /* Default to left */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.slide-in.visible {
+    animation: slide-in 0.8s ease-out forwards;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between; /* Space between each child div */
+    align-items: flex-start; /* Align items at the top */
+    flex-wrap: wrap; /* Allow wrapping if necessary */
+    margin: 250px;
+}
+
+/* Individual item container styling */
+.item-container {
+    flex: 1; /* Allow equal space for each item */
+    min-width: 300px; /* Minimum width to maintain responsiveness */
+    margin: 10px; /* Margin between items */
+    box-sizing: border-box;
+}
+
+.text-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center text vertically */
+    position: relative;
+    width: 400px; /* Same width as .image-container */
+    height: 400px; /* Same height as .image-container */
+    margin: auto; /* Center the container itself */
+    background: #fff; /* White background */
+    border-radius: 8%; /* Rounded corners */
+    border: 2px solid #fff; /* Border to match image styles */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for effect */
+    overflow: hidden;
+}
+
+.text-container h3 {
+    font-family: 'Love Days', sans-serif; /* Apply Love Days font */
+    font-size: 24px; /* Font size for the heading */
+    background: linear-gradient(135deg, #60a5fa, #1e3a8a); /* Light blue to dark blue gradient */
+    -webkit-background-clip: text; /* Clip gradient to text */
+    -webkit-text-fill-color: transparent; /* Fill color transparent to show gradient */
+    text-align: center; /* Center-align the text */
+    margin: 10px 20px; /* Margin for spacing */
+}
+
+.text-container p {
+    font-size: 16px; /* Font size for the text */
+    background: linear-gradient(135deg, #60a5fa, #1e3a8a); /* Light blue to dark blue gradient */
+    -webkit-background-clip: text; /* Clip gradient to text */
+    -webkit-text-fill-color: transparent; /* Fill color transparent to show gradient */
+    line-height: 1.5;
+    padding: 20px; /* Line height for readability */
+     /* Margin to keep text from touching the sides */
+}
+
+.text-container img {
+    transform: scale(1.7); /* Scale the image */
+    max-width: 100%; /* Make the image responsive */
+    max-height: 100%; /* Ensure the image does not exceed the container height */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Match the border radius of the container */
+    object-fit: cover; /* Ensure the image covers the container */
+    display: block; /* Remove bottom space below the image */
+}
+
+.rotation {
+    display: block;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px -150px;
+    border-radius: 50%;
+    background-color: #fff;
+    opacity: 0.3;
+    z-index: -1;
+    animation: 2s girandomt infinite forwards linear;
+  }
+  
+  .player {
+    border-radius: 6px;
+    background-color: white;
+    width: 500px;
+    min-height: 200px;
+    box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .player .head {
+    padding: 15px;
+    color: white;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
+    height: auto;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .player .head .front {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .player .head .back {
+    height: 110%;
+    width: 110%;
+    top: -10px;
+    left: -10px;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    background-image: url('img/clouds.png');
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+  }
+  
+  .player .head .avatar {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .player .head .avatar img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .player .head .infos {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: inherit;
+    align-items: baseline;
+  }
+  
+  .player .head .infos .tags span {
+    border-radius: 3px;
+    padding: 2px 11px;
+    margin: 1px 2px;
+    background-color: #2b74fa;
+    font-weight: bold;
+  }
+  
+  .player .head .infos .titulo_song {
+    font-size: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  }
+  
+  .player .head .infos .duracao_song {
+    font-size: 12px;
+    color: white;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  }
+  
+  .player .timeline {
+    height: auto;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .player .timeline .volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .player .timeline .controllers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .player .timeline .controllers.active .play {
+    box-shadow: 0px 0px 10px 2px rgba(30, 177, 150, 0.1);
+    animation: 3s pulseshadowplay infinite both;
+  }
+  
+  .player .timeline .controllers .back,
+  .player .timeline .controllers .play,
+  .player .timeline .controllers .forward {
+    font-size: 16px;
+    margin: 10px;
+    color: #4A4A4A;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .player .timeline .controllers .play {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .player .timeline .controllers .play:hover {
+    box-shadow: 0px 0px 10px 2px rgba(30, 177, 150, 0.38);
+    border: 2px solid rgba(143, 208, 196, 0.54) !important;
+  }
+  
+  .player .timeline .controllers .back::after {
+    content: '\f04a';
+    font-family: 'FontAwesome';
+    margin-right: 5px;
+  }
+  
+  .player .timeline .controllers .play::after {
+    content: '\f04b';
+    font-family: 'FontAwesome';
+    margin-left: 5px;
+  }
+  
+  .player .timeline .controllers .forward::after {
+    content: '\f04e';
+    font-family: 'FontAwesome';
+    margin-left: 5px;
+  }
+  
+  .player .timeline .soundline {
+    width: 100%;
+    height: 6px;
+    position: relative;
+    background: #F3F3F3;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .player .timeline .soundline::after {
+    display: block;
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #6CE59C;
+    box-shadow: 0px 0px 9px #94FFBF;
+    transition: all 0.4s cubic-bezier(0.07, 0.82, 0.11, 1.02);
+    animation: 20s soundline infinite both linear;
+  }
+  
+  @keyframes pulseshadowplay {
+    0% {
+      box-shadow: 0px 0px 10px 2px rgba(30, 177, 150, 0.1);
+    }
+    50% {
+      box-shadow: 0px 0px 50px 2px rgba(30, 177, 150, 0.38);
+    }
+  }
+  
+  @keyframes soundline {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes girandomt {
+    0% {
+      box-shadow: 0px 0px 00px 00px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+      box-shadow: 0px 0px 30px 40px rgba(255, 255, 255, 0.0);
+    }
+  }
+      .music-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: linear-gradient(45deg, #007BFF, #00D4FF);
+          border: 3px solid white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          z-index: 1000;
+      }
+
+      .music-button i {
+          font-size: 24px;
+          color: white;
+      }
+
+      /* Button Hover Effect */
+      .music-button:hover {
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+          transform: scale(1.1);
+      }
+
+      /* Modal Styling */
+      .modal-music {
+          display: none;
+          position: fixed;
+          z-index: 1001;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-content {
+          position: relative;
+          margin: 10% auto;
+          padding: 20px;
+          background-color: transparent;
+          border-radius: 10px;
+          width: 80%;
+          max-width: 600px;
+      }
+
+      .close {
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          color: #aaa;
+          font-size: 28px;
+          font-weight: bold;
+          cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: black;
+      }
+
+      .nav-menu {
+        display: flex;
+        justify-content: center; /* Center the navbar horizontally */
+        padding: 20px; /* Add padding around the navbar */
+        position: fixed; /* Fixes the navbar to the top of the viewport */
+        top: 0; /* Positions the navbar at the top */
+        left: 0; /* Aligns the navbar with the left edge */
+        width: 100%; /* Ensures the navbar spans the full width of the viewport */
+        z-index: 999; /* Ensures the navbar stays above other content */
+        transition: ease-in 0.5s; /* Smooth transition for background color change */
+    }
+    
+    /* Background color for when scrolled down */
+    .nav-menu.scrolled {
+        background: linear-gradient(to right, #3e9fff, #00477a); /* Darker gradient background */
+    }
+    
+    .nav-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 20px;
+    }
+    
+    .nav-menu ul li {
+        position: relative;
+    }
+    
+    .nav-menu ul li a {
+        display: block;
+        padding: 10px 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-left: 80px;
+        margin-right: 80px;
+        border: 2px solid white; /* Border color for inactive state */
+        border-radius: 20px;
+        color: white; /* Text color for inactive state */
+        text-decoration: none;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        transition: color 0.3s, border-color 0.3s;
+    }
+    
+    .nav-menu ul li a::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background-color: rgb(255, 255, 255); /* Background color on hover */
+        transition: all 0.3s;
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        z-index: -1;
+        filter: blur(20px);
+    }
+    
+    .nav-menu ul li:hover a::before,
+    .nav-menu ul li.active a::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    
+    .nav-menu ul li:hover a,
+    .nav-menu ul li.active a {
+        color: rgb(223, 223, 255); /* Text color on hover */
+    }
+    
+    .nav-menu ul li.active a {
+        color: rgb(230, 230, 255); /* Text color for active state */
+    }
+    
+    .nav-menu ul li a:hover {
+        border-color: rgb(255, 255, 255); /* Text color on hover */
+        color: rgb(50, 104, 255); /* Border color on hover */
+    }
+    /* Toggle Button Styling */
+.menu-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #007BFF, #00D4FF);
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle i {
+    font-size: 24px;
+    color: white;
+}
+
+/* Button Hover Effect */
+.menu-toggle:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+/* Icon Container Styling */
+.icon-container {
+    position: fixed;
+    bottom: 100px; /* Position the container just above the menu toggle button */
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align icons horizontally */
+    gap: 10px; /* Space between icons */
+    transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    max-height: 0; /* Initially hidden */
+    overflow: hidden;
+    opacity: 0;
+    z-index: 1000;
+}
+
+/* Show the icon container */
+.icon-container.show {
+    max-height: 300px; /* Adjust based on the number of icons */
+    opacity: 1;
+}
+
+/* Icon Styling */
+.icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #007BFF, #00D4FF);
+    border: 3px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.icon i {
+    font-size: 24px;
+    color: white;
+}
+
+/* Button Hover Effect */
+.icon:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+  
+  .rain {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;/* Menyembunyikan tetesan hujan yang mungkin keluar dari elemen */
+  }
+  
+  .rain.back-row {
+    z-index: -1;
+    bottom: 60px;
+    opacity: 0.5;
+  }
+  
+  .drop {
+    position: absolute;
+    width: 2px; /* Menyesuaikan lebar tetesan */
+    height: 100px; /* Menyesuaikan tinggi tetesan */
+    background: rgba(255, 255, 255, 0.8); /* Warna tetesan hujan */
+    pointer-events: none;
+    animation: drop 0.75s linear infinite; /* Menambah durasi animasi agar tetesan lebih lambat */
+  }
+  
+  @keyframes drop {
+    0% {
+      transform: translateY(0vh);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+  
+  .stem {
+    width: 1px;
+    height: 60%;
+    margin-left: 7px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+    animation: stem 0.5s linear infinite;
+  }
+  
+  @keyframes stem {
+    0% {
+      opacity: 1;
+    }
+    65% {
+      opacity: 1;
+    }
+    75% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  .splat {
+    width: 15px;
+    height: 10px;
+    border-top: 2px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 1;
+    transform: scale(0);
+    animation: splat 0.5s linear infinite;
+  }
+  
+  @keyframes splat {
+    0% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    80% {
+      opacity: 1;
+      transform: scale(0);
+    }
+    90% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+  }
+  
+  .preloader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white; /* Optional background */
+    z-index: 9999;
+}
+
+.preloader-dots {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.preloader-dot {
+    width: 15px;
+    height: 15px;
+    background: linear-gradient(135deg, #00f2ff, #0056ff);
+    border-radius: 50%;
+    animation: preloader-dot-blink 0.33s infinite alternate;
+
+}
+
+.preloader-images {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; /* Adjust size as needed */
+    height: 200px; /* Adjust size as needed */
+    overflow: hidden;
+}
+
+.preloader-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: preloader-dissolve 1s infinite;
+}
+
+.preloader-image1 {
+    animation-delay: 0s;
+}
+
+.preloader-image2 {
+    animation-delay: 0.4s;
+}
+
+@keyframes preloader-dot-blink {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes preloader-dissolve {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Hide the preloader once the page is loaded */
+.preloader-container.hidden {
+    display: none;
+}
+.no-service-text {
+  margin-top: 300px;
+  font-size: 250px; /* Ukuran font besar */
+  font-weight: 700; /* Roboto Bold */
+  color: transparent; /* Teks transparan untuk menggunakan gambar sebagai mask */
+  background-image: url('img/peakpx.jpg'); /* Gambar untuk mask */
+  background-size: cover; /* Atur gambar untuk menutupi area teks */
+  background-position: center; /* Posisikan gambar di tengah */
+  -webkit-background-clip: text; /* Clipping mask untuk background di Safari dan Chrome */
+  background-clip: text; /* Clipping mask untuk background di Firefox */
+  display: flex;
+  flex-direction: column; /* Agar teks berada di atas dan bawah */
+  justify-content: center;
+  align-items: center;
+  width: 80%; /* Sesuaikan lebar teks jika diperlukan */
+  text-align: right; /* Tengah-tengah secara horizontal */
+  font-family: 'Roboto Bold', sans-serif; /* Menggunakan font Roboto */
+  letter-spacing: -0.1em; /* Mengurangi jarak antar huruf */
+  line-height: 0.7; /* Mengurangi jarak baris agar teks lebih rapat */
+  transform: scaleY(1.2); /* Stretching teks ke atas/bawah */
+}
+
+
+      #circular-background {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 800px; /* Adjust the size as needed */
+          height: 500px; /* Adjust the size as needed */
+          background-color: #fff;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          z-index: -1; /* Place it behind other content */
+      }
+      #instructions {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          color: #000;
+          background: #fff;
+          padding: 10px;
+      }
+      body { margin: 0; }
+      canvas { display: block; }
+      #instructions { position: absolute; top: 10px; left: 10px; color: #000; background: #fff; padding: 10px; }
+/* styles.css */
+
+.frm-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+.frm-left-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px; /* Space between image and message container */
+}
+
+.frm-image {
+  width: 500px; /* Increase image size */
+  height: 500px;
+  border-radius: 50%; /* Circular image */
+  object-fit: cover;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between text areas */
+}
+
+.message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between text area and button */
+}
+
+#frm-textarea {
+    min-width: 210px; 
+    max-width: 400px;/* Set width to auto to follow the text width */
+    min-height: 80px; /* Minimum height */
+    max-height: 200px; /* Maximum height to limit growth */
+    border-radius: 10px; /* Rounded corners */
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    resize: none; /* Disable resizing */
+    background-color: #f1f1f1; /* Light background for responses */
+    text-align: left; /* Right-align text */
+    overflow: auto; /* Show scrollbar if content overflows */
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+#frm-textarea:focus {
+  border-color: #007bff; /* Border color on focus */
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  background: linear-gradient(to right, #00b4d8, #0077b6); /* Gradasi biru laut */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(to right, #0077b6, #00b4d8); /* Balikkan arah gradasi */
+  transform: scale(1.05); /* Sedikit pembesaran saat hover */
+}
+
+button:active {
+  background: linear-gradient(to right, #005f73, #004d40); /* Warna lebih gelap saat ditekan */
+  transform: scale(0.95); /* Sedikit penyusutan saat ditekan */
+}
+
+
+.disabled {
+  background-color: #f0f0f0;
+  pointer-events: none;
+}
+
+.response-area {
+  width: auto; /* Set width to auto to follow the text width */
+  min-height: 50px; /* Minimum height */
+  max-height: 100px; /* Maximum height to limit growth */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  resize: none; /* Disable resizing */
+  background-color: #f1f1f1; /* Light background for responses */
+  text-align: right; /* Right-align text */
+  overflow: auto; /* Show scrollbar if content overflows */
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  margin-left: 30%;
+}
+
+
+textarea {
+  width: auto; /* Set width to auto to follow the text width */
+  min-height: 50px; /* Minimum height */
+  max-height: 100px; /* Maximum height to limit growth */
+  border-radius: 10px; /* Rounded corners */
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  resize: none; /* Disable resizing */
+  background-color: #f1f1f1; /* Light background for responses */
+  text-align: left; /* Right-align text */
+  overflow: auto; /* Show scrollbar if content overflows */
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+
+.hidden {
+  display: none;
+}

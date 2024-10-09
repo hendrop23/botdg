@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "awop",
+			"path": "."
+		},
+		{
+			"name": "src",
+			"path": "C:/Users/Lenovo/Downloads/kevin-powell-challenge/src"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "awop"
+	}
+}

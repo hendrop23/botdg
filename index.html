@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laut Beku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+      <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="preloader" class="preloader-container">
+        <div class="preloader-dots">
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
+        </div>
+        <div class="preloader-images">
+            <img src="img/kaget1.png" alt="Image 1" class="preloader-image preloader-image1">
+            <img src="img/kaget2.png" alt="Image 2" class="preloader-image preloader-image2">
+        </div>
+    </div>
+
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+ 
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Services</a></li>
+            <li><a href="index.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <div class="item-container">
+        <div class="image-container slide-in">
+            <div class="overlay-text">Seafood EA</div>
+            <img src="img/base.png" alt="Image 1" class="image1">
+            <img src="img/cry.png" alt="Image 2" class="image2" id="changeableImage">
+            <img src="img/aboveBase.png" alt="Image 3" class="image3">
+        </div>
+        <div class="input-container">
+            <input type="text" placeholder="Mau nulis..." id="textInput">
+            <button onclick="handleLeave()">Leave</button>
+            <div class="bubble bubble1"></div>
+            <div class="bubble bubble2"></div>
+        </div>
+    </div>
+
+    <!-- Main container to hold all elements -->
+    <div class="main-container">
+        <!-- Repeated structure 1 with lorem text -->
+        <div class="item-container slide-in">
+            <div class="text-container">
+                <div class="overlay-text" style="padding-bottom: 90%;">profile</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a dolor nec purus fringilla euismod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima aperiam repudiandae, aut excepturi voluptatibus itaque officia nisi id quidem eius. Reprehenderit iusto eveniet commodi nobis voluptas animi rerum, dignissimos asperiores.</p>
+            </div>
+        </div>
+
+        <!-- Repeated structure 2 with lorem text -->
+        <div class="item-container slide-in">
+            <div class="text-container">
+              <img src="img/tenor.gif" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="frm-container">
+        <div class="frm-left-section">
+            <img src="img/gawr-gura-tsundere.gifs" alt="Image" class="frm-image">
+            <div class="message-container" id="message-container">
+                <div class="message-box">
+                    <textarea id="frm-textarea" placeholder="Masukkan teks di sini"></textarea>
+                    <button id="send-btn">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API endpoint
+        const apiEndpoint = 'http://localhost:5000/api/chatbot';
+    
+        // Select elements
+        const messageContainer = document.getElementById('message-container');
+    
+        // Function to create a new text area in a separate div
+        function createTextArea(text, isResponse = false) {
+            const messageBox = document.createElement('div');
+            messageBox.classList.add('message-box');
+    
+            const newTextArea = document.createElement('textarea');
+            newTextArea.classList.add('frm-textarea');
+            newTextArea.value = text;
+            newTextArea.readOnly = true;  // Disable text area editing after submission
+    
+            // If it's a response, align it to the right
+            if (isResponse) {
+                newTextArea.classList.add('response-area');
+            }
+    
+            messageBox.appendChild(newTextArea);
+            messageContainer.appendChild(messageBox);
+        }
+    
+        // Function to create an audio element and play the response
+        function playAudio(audioUrl) {
+            const audioElement = document.createElement('audio');
+            audioElement.src = audioUrl;
+            audioElement.controls = true;
+            audioElement.autoplay = true; // Play the audio automatically when added to the DOM
+    
+            // Append the audio element to the container
+            const audioContainer = document.createElement('div');
+            audioContainer.classList.add('audio-container');
+            audioContainer.appendChild(audioElement);
+            messageContainer.appendChild(audioContainer);
+        }
+    
+        // Function to handle the chatbot API request
+        function sendToChatbot(event) {
+            event.preventDefault(); // Prevent default form submission behavior
+    
+            // Get the clicked button and its associated textarea
+            const buttonClicked = event.currentTarget;
+            const textarea = buttonClicked.previousElementSibling; // Get the textarea before the button
+            const userMessage = textarea.value.trim();
+    
+            // Check if the textarea is empty
+            if (!userMessage) return;
+    
+            // Hide the button and disable the textarea
+            buttonClicked.classList.add('hidden');
+            textarea.disabled = true;
+            textarea.classList.add('disabled');
+    
+            // Send user input to the chatbot API
+            fetch(apiEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the chatbot response in a new text area aligned to the right
+                createTextArea(data.response, true);
+    
+                // Play the audio response if an audio URL is provided
+                if (data.audio_url) {
+                    playAudio(data.audio_url);
+                }
+    
+                // Create a new empty textarea and button for the next message
+                const newMessageBox = document.createElement('div');
+                newMessageBox.classList.add('message-box');
+    
+                const newTextarea = document.createElement('textarea');
+                newTextarea.placeholder = 'Masukkan teks di sini';
+                newMessageBox.appendChild(newTextarea);
+    
+                const newSendBtn = document.createElement('button');
+                newSendBtn.innerHTML = 'Kirim';
+                newSendBtn.addEventListener('click', sendToChatbot);
+                newMessageBox.appendChild(newTextarea);
+                newMessageBox.appendChild(newSendBtn);
+    
+                messageContainer.appendChild(newMessageBox);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    
+        // Initial event listener for the "Kirim" button
+        document.getElementById('send-btn').addEventListener('click', sendToChatbot);
+    </script>    
+
+   <!-- Toggle Button -->
+<button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-ellipsis-v"></i> <!-- Three-dot icon -->
+</button>
+
+<!-- Icon Container -->
+<div class="icon-container">
+    <div class="icon" id="scrollTopButton">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    <div class="icon" id="musicButton">
+        <i class="fas fa-music"></i>
+    </div>
+    <div class="icon" id="rainButton">
+        <i class="fas fa-cloud-showers-heavy"></i>
+    </div>
+</div>
+
+
+    <script>
+      </script>
+    <!-- Music Player Modal -->
+    <div id="musicModal" class="modal-music">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <div class="rotation"></div>
+            <div class="player">
+                <div class="head">
+                    <div class="back"></div>
+                    <div class="front">
+                        <div class="avatar">
+                            <img src="http://vignette4.wikia.nocookie.net/lyricwiki/images/1/15/Semisonic_portrait.jpg/revision/latest?cb=20090409134209" />
+                        </div>
+                        <div class="infos">
+                            <div class="titulo_song" id="song-title">Unknown Title</div>
+                            <div class="duracao_song">
+                                <span class="current-time" id="current-time">0:00</span>
+                                <span id="total-duration">/ 0:00</span>
+                            </div>
+                            <div class="tags">
+                                <span>Music</span>
+                                <span>Audio</span>
+                                <span>Player</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="soundline" id="progress-bar"></div>
+                    <div class="controllers">
+                        <div class="back" id="backward"></div>
+                        <div class="play" id="play-pause"></div>
+                        <div class="forward" id="forward"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="audio-player" src="img/Lord_Alul_New_Hero_-_The_Penghambat_Rezeki_(youconvert.net).mp3"></audio>
+      
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
